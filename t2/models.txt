@@ -1,0 +1,38 @@
+model = Sequential([
+    Conv2D(2, (1, 1), activation='relu', input_shape=_IMAGES_SHAPE),
+    Conv2D(4, (2, 2), activation='relu'),
+    Conv2D(8, (2, 2), activation='relu'),
+    Conv2D(16, (2, 2), activation='relu'),
+    BatchNormalization(),
+    MaxPooling2D(2, 2),
+
+    Conv2D(32, (2, 2), activation='relu'),
+    Dropout(0.2),
+    Conv2D(64, (2, 2), activation='relu'),
+    Dropout(0.2),
+    Conv2D(128, (3, 3), activation='relu'),
+    BatchNormalization(),
+    MaxPooling2D(2, 2),
+
+    Conv2D(300, (3, 3), activation='relu'),
+    Dropout(0.5),
+    Conv2D(200, (3, 3), activation='relu'),
+    Dropout(0.5),
+    BatchNormalization(),
+    MaxPooling2D(2, 2),
+
+    Conv2D(32, (1, 1), activation='relu'),
+    Dropout(0.2),
+    Conv2D(64, (1, 1), activation='relu'),
+    Dropout(0.2),
+    Conv2D(128, (1, 1), activation='relu'),
+
+
+    Flatten(),
+    Dense(400, activation='relu'),
+    Dropout(0.3),
+    Dense(100, activation='relu'),
+    Dropout(0.2),
+    Dense(_CLASSIFICATION_SIZE, activation='softmax')
+])
+epochs = 50 => 0.6 val_acc
